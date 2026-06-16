@@ -2364,4 +2364,9 @@ public final class ManaBrewInteractiveController extends PlayerController implem
         }
         return result;
     }
+
+    @Override
+    public CostDecisionMakerBase getCostDecisionMaker(Player player, SpellAbility ability, boolean effect, String prompt) {
+        return new HumanCostDecision(this, player, ability, effect, prompt);
+    }
 }
