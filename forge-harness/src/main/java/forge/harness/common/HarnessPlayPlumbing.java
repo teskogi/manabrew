@@ -241,6 +241,11 @@ public final class HarnessPlayPlumbing {
     }
 
     private boolean announceValuesLikeX(final SpellAbility ability) {
+        final String sMin = ability.getParamOrDefault("Min", "0");
+        final int min = AbilityUtils.calculateAmount(source, sMin, sa);
+        final String sMax = ability.getParamOrDefault("Max", "99");
+        final int max = AbilityUtils.calculateAmount(source, sMax, sa);
+        
         if (ability.isCopied() || ability.isWrapper()) { return true; }
 
         if (ability.getXManaCostPaid() != null) {
@@ -256,7 +261,7 @@ public final class HarnessPlayPlumbing {
             for (final String aVar : announce.split(",")) {
                 final String varName = aVar.trim();
 
-                final Integer value = controller.announceRequirements(ability, varName);
+                final Integer value = controller.announceRequirements(ability, min, max, varName);
                 if (value == null) {
                     return false;
                 }
@@ -276,7 +281,7 @@ public final class HarnessPlayPlumbing {
                 final String sVar = ability.getParamOrDefault("XAlternative", ability.getSVar("X"));
                 boolean replacedXshard = ability.isSpell() && ability.getHostCard().getManaCost().countX() > 0 && !cost.hasXInAnyCostPart();
                 if (("Count$xPaid".equals(sVar) && !replacedXshard) || sVar.isEmpty()) {
-                    final Integer value = controller.announceRequirements(ability, "X");
+                    final Integer value = controller.announceRequirements(ability, min, max, "X");
                     if (value == null) {
                         return false;
                     }
