@@ -2369,4 +2369,18 @@ public final class ManaBrewInteractiveController extends PlayerController implem
     public CostDecisionMakerBase getCostDecisionMaker(Player player, SpellAbility ability, boolean effect, String prompt) {
         return new HumanCostDecision(this, player, ability, effect, prompt);
     }
+
+    @Override
+    public CardCollectionView chooseCardsForCost(CardCollectionView optionList, SpellAbility sa, CostPartWithList cpl, int amount, boolean isOptional, String prompt) {
+        InputSelectCardsFromList inp = new InputSelectCardsFromList(this, amount, amount, optionList, sa);
+        inp.setMessage(prompt);
+        inp.setCancelAllowed(isOptional);
+
+        inp.showAndWait();
+
+        if(inp.hasCancelled() || inp.getSelected().size() != amount)
+            return null;
+
+        return new CardCollection(inp.getSelected());
+    }
 }
