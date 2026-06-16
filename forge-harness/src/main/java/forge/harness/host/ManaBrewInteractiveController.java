@@ -48,6 +48,7 @@ import forge.game.zone.MagicStack;
 import forge.game.zone.PlayerZone;
 import forge.game.zone.ZoneType;
 import forge.item.PaperCard;
+import forge.player.HumanCostDecision;
 import forge.util.Aggregates;
 import forge.util.ITriggerEvent;
 import forge.util.Lang;
