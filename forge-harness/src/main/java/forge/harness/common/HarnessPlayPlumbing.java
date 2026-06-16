@@ -241,6 +241,7 @@ public final class HarnessPlayPlumbing {
     }
 
     private boolean announceValuesLikeX(final SpellAbility ability) {
+        final Card source = ability.getHostCard();
         final String sMin = ability.getParamOrDefault("Min", "0");
         final int min = AbilityUtils.calculateAmount(source, sMin, ability);
         final String sMax = ability.getParamOrDefault("Max", "99");
