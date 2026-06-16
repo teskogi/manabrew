@@ -1834,4 +1834,9 @@ public class DeterministicController extends PlayerController implements Harness
         // headless — no-op
     }
 
+    @Override
+    public CostDecisionMakerBase getCostDecisionMaker(Player player, SpellAbility ability, boolean effect, String prompt) {
+        // headless — no-op
+    }
+
 }
