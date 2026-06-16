@@ -1836,7 +1836,13 @@ public class DeterministicController extends PlayerController implements Harness
 
     @Override
     public CostDecisionMakerBase getCostDecisionMaker(Player player, SpellAbility ability, boolean effect, String prompt) {
-        // headless — no-op
+        return new AiCostDecision(player, ability, effect);
+    }
+
+    @Override
+    public CardCollectionView chooseCardsForCost(CardCollectionView optionList, SpellAbility sa, CostPartWithList cpl, int amount, boolean isOptional, String prompt) {
+        //AI does not currently pay costs like this.
+        return new CardCollection(Iterables.limit(optionList, amount));
     }
 
 }
