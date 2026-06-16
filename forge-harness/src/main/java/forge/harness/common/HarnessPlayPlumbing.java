@@ -242,9 +242,9 @@ public final class HarnessPlayPlumbing {
 
     private boolean announceValuesLikeX(final SpellAbility ability) {
         final String sMin = ability.getParamOrDefault("Min", "0");
-        final int min = AbilityUtils.calculateAmount(source, sMin, sa);
+        final int min = AbilityUtils.calculateAmount(source, sMin, ability);
         final String sMax = ability.getParamOrDefault("Max", "99");
-        final int max = AbilityUtils.calculateAmount(source, sMax, sa);
+        final int max = AbilityUtils.calculateAmount(source, sMax, ability);
         
         if (ability.isCopied() || ability.isWrapper()) { return true; }
 
