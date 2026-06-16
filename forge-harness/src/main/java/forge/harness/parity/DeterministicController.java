@@ -354,7 +354,7 @@ public class DeterministicController extends PlayerController implements Harness
         if (payCosts != null) {
             ManaCost mana = payCosts.getTotalMana();
             if (mana != null && mana.countX() > 0) {
-                int maxX = ComputerUtilCost.getMaxXValue(sa, player, sa.isTrigger());
+                int maxX = ComputerUtilCost.setMaxXValue(sa, player, sa.isTrigger());
                 sa.setXManaCostPaid(Math.max(maxX, 0));
             }
         }
